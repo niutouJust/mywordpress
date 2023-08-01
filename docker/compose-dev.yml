@@ -6,6 +6,8 @@ services:
     image: wordpress
     hostname: wordpress
     restart: always
+    networks:
+        - dev
     ports:
       - 8080:80
     environment:
@@ -20,6 +22,8 @@ services:
     image: mysql:5.7
     hostname: db
     restart: always
+    networks:
+        - dev
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
@@ -27,6 +31,9 @@ services:
     #   MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
       - db:/var/lib/mysql
+
+networks:
+  dev:
 
 volumes:
   wordpress:
